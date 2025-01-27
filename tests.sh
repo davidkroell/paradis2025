@@ -1,8 +1,15 @@
 #!/bin/bash
 
+# Check if the first parameter is provided
+if [ -z "$1" ]; then
+  echo "Error: Parameter task file is missing"
+  echo "Usage: $0 <task_file>"
+  exit 1        
+fi
+
 # Define the files to compile and test
-MODULE_FILES="task1.erl task1_test.erl"
-TEST_MODULE="task1_test"
+MODULE_FILES="$1.erl $1_test.erl"
+TEST_MODULE="$1_test"
 
 # Compile the modules
 echo "Compiling erlang..."
