@@ -8,13 +8,14 @@ if [ -z "$1" ]; then
 fi
 
 # Define the files to compile and test
-MODULE_FILES="$1.erl $1_test.erl"
+MODULE_FILES="*.erl"
 TEST_MODULE="$1_test"
 
 # Compile the modules
 echo "Compiling erlang..."
 for FILE in $MODULE_FILES; do
-    erlc $FILE
+    erlc $FILE > /dev/null 2>&1
+    echo "$FILE"
     if [ $? -ne 0 ]; then
         echo "Compilation failed for $FILE."
         exit 1
